@@ -15,9 +15,31 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from . import views
+# Используйте include() для добавления URL-адресов из приложения каталога и системы аутентификации
+from django.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='index'),
 ]
+
+urlpatterns += [
+    path('catalog/', include('catalog.urls')),
+]
+
+# Используйте static() для добавления сопоставления URL-адресов для обслуживания статических файлов во время разработки (только)
+from django.conf import settings
+from django.conf.urls.static import static
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Добавьте URL-карты, чтобы перенаправить базовый URL-адрес в наше приложение
+
+from django.views.generic import RedirectView
+urlpatterns += [
+    path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+]
+
+# Добавьте URL-адреса аутентификации сайта Django (для входа в систему, выхода из системы, управления паролями)
+# urlpatterns += [
+#     path('accounts/', include('django.contrib.auth.urls')),
+# ]
