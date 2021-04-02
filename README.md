@@ -32,7 +32,7 @@ urlpatterns = [
 
 ## Shell
 
-Django utilizes the shell for managing your site. For this click on the `?` in the lower-right corner and click "Workspace shortcuts" from there you can open a new shell pane. 
+ использует оболочку для управления вашим сайтом. Для этого нажмите «?» В правом нижнем углу и нажмите «Ярлыки рабочего пространства», оттуда вы можете открыть новую панель оболочки. {}
 
 ## Database
 
